@@ -441,13 +441,16 @@ def main():
                         
                         new_investment = process_data(new_investment)
                         
-                        if st.session_state.portfolio_data is not None and not st.session_state.portfolio_data.empty:
-                            st.session_state.portfolio_data = pd.concat([st.session_state.portfolio_data, new_investment], ignore_index=True)
-                        else:
+                        # Create a new DataFrame if portfolio_data is None or empty
+                        if st.session_state.portfolio_data is None or st.session_state.portfolio_data.empty:
                             st.session_state.portfolio_data = new_investment
+                        else:
+                            # Concatenate with existing data
+                            st.session_state.portfolio_data = pd.concat([st.session_state.portfolio_data, new_investment], ignore_index=True)
                         
                         st.success(f"Added {asset} to your portfolio!")
                         st.session_state.show_sample_data = False
+                        st.rerun()  # Force a rerun to update the display
             
             # Clear portfolio button
             if st.button("Clear Portfolio"):
@@ -469,20 +472,32 @@ def main():
             
             if uploaded_file is not None:
                 try:
+                    # Read the CSV file
                     df = pd.read_csv(uploaded_file)
                     required_columns = ['Asset', 'Category', 'Quantity', 'Purchase Price', 'Current Price']
                     
                     # Check if all required columns exist
                     if all(col in df.columns for col in required_columns):
+                        # Process the data
                         df = process_data(df)
-                        st.session_state.portfolio_data = df
-                        st.success("Portfolio data loaded successfully!")
+                        
+                        # Debug information
+                        st.write("Uploaded data preview:")
+                        st.dataframe(df.head())
+                        
+                        # Clear existing data and set new data
+                        st.session_state.portfolio_data = None
+                        st.session_state.portfolio_data = df.copy()
                         st.session_state.show_sample_data = False
+                        
+                        st.success("Portfolio data loaded successfully!")
+                        st.rerun()  # Force a rerun to update the display
                     else:
                         missing_cols = [col for col in required_columns if col not in df.columns]
                         st.error(f"The CSV file is missing the following required columns: {', '.join(missing_cols)}")
                 except Exception as e:
                     st.error(f"Error loading CSV file: {str(e)}")
+                    st.write("Error details:", e)
             
             # Download sample CSV template
             sample_df = pd.DataFrame({
