@@ -1,7 +1,14 @@
 # Investment Portfolio Analyzer
 
 ## Overview
+
+### App Overview
+The Investment Portfolio Analyzer is designed to help users track and analyze their investment portfolios with ease. It enables users to monitor asset performance, assess portfolio diversification, and visualize financial metrics interactively. The app integrates with Yahoo Finance to fetch real-time and historical price data, allowing users to make data-driven investment decisions.
 The **Investment Portfolio Analyzer** is a Streamlit-based web application that provides users with an interactive and visual way to analyze their investment portfolio. It allows users to track their assets, view performance metrics, and visualize portfolio allocation with interactive charts.
+
+## Course Information
+- **Course Name:** AF3005 – Programming for Finance
+- **Instructor Name:** Dr. Usama Arshad
 
 ## Features
 - 📊 **Portfolio Analysis:** View key financial metrics like total value, gain/loss percentage, and diversification score.
@@ -15,7 +22,7 @@ To run this project, ensure you have **Python 3.8+** installed. Follow these ste
 
 ### 1. Clone the repository
 ```sh
- git clone <repository-url>
+ git clone https://github.com/syed-x-farhan/Investment-Portfolio-Analyzer.git
  cd investment-portfolio-analyzer
 ```
 
@@ -45,6 +52,10 @@ The project requires the following Python libraries, listed in `requirements.txt
 3. **Customize Data:** Upload your own investment details or use sample data.
 4. **Explore Insights:** Use interactive graphs to make informed investment decisions.
 
+## Deployment
+- **Streamlit App URL:** [Investment Portfolio Analyzer](https://investment-portfolio-analyzer.streamlit.app)
+- **GitHub Repository:** [Investment Portfolio Analyzer Repo](https://github.com/syed-x-farhan/Investment-Portfolio-Analyzer.git)
+
 ## File Structure
 ```
 ├── invest.py             # Main Streamlit application
@@ -52,8 +63,8 @@ The project requires the following Python libraries, listed in `requirements.txt
 └── README.md             # Documentation
 ```
 
-## License
-This project is licensed under the MIT License.
+## Video Demo
+[![Watch the video](path/to/video-thumbnail.png)](path/to/video.mp4)
 
 ## Author
-Developed by [Your Name]
+Developed by Farhan Hassan Rizvi
